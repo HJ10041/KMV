@@ -1,0 +1,31 @@
+1. introduction(김진영) - 35분~
+
+2. HANK Solving mehtod pt1: HJB(유재영) - 35분~
+
+3. HANK Solving method pt2: algorithm & code (윤혜정) - 35분~
+
+
+
+이게 큰 흐름이고,
+
+2번 파트에서
+
+Bellman equation(discrete time) remind
+
+HJB 소개 : 간단한 모델 또는 HANK 모델처럼 two assets  가정 해도 ㄱㅊ에서의
+
+FOC 도출
+
+그리드 서칭으로 해법 풀기 (in this case, we are focusing on the HH's max problem)
+
+
+
+3번 파트
+
+본격적인 GE solver
+
+the main part : algorithm (maybe policy fcn iteration)
+
+2번 파트에서 구한  foc + 분포(Kolmogorov Forward) 루핑으로 aggregate variable 도출 -> 초과수요 구하기 -> 시장 청산 가격변수 찾기(가격변수와 수량변수를 찾으면 해를 모두 구한 것)
+
++만약 역량이 된다면 직접 효과와 가격효과를 분해해서 하고 싶은데, 솔직히 저희가 calibration pt까지 가기 어려울듯

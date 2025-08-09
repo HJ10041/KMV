@@ -1,0 +1,14 @@
+// HANK Model Structure
+digraph {
+	nodesep=1.0 rankdir=TB splines=ortho
+	node [fillcolor=lightblue fontname="Malgun Gothic" shape=box style="rounded,filled"]
+	subgraph cluster_outer {
+		color=grey fontname="Malgun Gothic" fontsize=16 label="외부 루프 (Outer Loop): 일반 균형 (GE)" style=rounded
+		GE_Loop [label="시장 청산 가격(r, w) 찾기" height=1.2]
+		subgraph cluster_inner {
+			color=dimgrey fontname="Malgun Gothic" fontsize=14 label="내부 루프 (Inner Loop): 부분 균형 (PE)" style=rounded
+			PE_Loop [label="주어진 가격(r, w) 하에서
+가계 최적화 문제 풀이 (HJB)" height=1.2]
+		}
+	}
+}

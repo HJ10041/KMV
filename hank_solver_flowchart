@@ -1,0 +1,37 @@
+// HANK GE Solver Flowchart
+digraph {
+	compound=true nodesep=0.6 rankdir=TB splines=ortho
+	node [fontname="Malgun Gothic" shape=box style="rounded,filled"]
+	A [label="Start: GE Solver" fillcolor=lightgrey shape=ellipse]
+	B [label="1. 초기 가격 추측 (r, w)
+[SolveSteadyStateEqum.f90],
+[InitialSteadyState.f90]" fillcolor="#f9f2ff"]
+	E [label="3. 정상상태 분포 계산 (KFE)
+[StationaryDistribution.f90]" fillcolor="#ebf2ff"]
+	F [label="4. 총량 변수 계산 (Aggregation)
+[DistributionStatistics.f90]" fillcolor="#ebf2ff"]
+	G [label="5. 시장 청산 확인
+(자본 수요 == 공급?)
+[SolveSteadyStateEqum.f90]" fillcolor="#ffffcc" shape=diamond]
+	H [label="6. 가격 업데이트 (r, w 조정)
+[FnDiscountRate.f90]" fillcolor="#f9f2ff"]
+	I [label="End: 균형 찾음!" fillcolor="#dff0d8" shape=ellipse]
+	subgraph cluster_hjb {
+		color=dimgrey fontname="Malgun Gothic" fontsize=14 label="내부 루프: 가계 문제 풀이
+[IterateBellman.f90]" style=rounded
+		node [fillcolor="#ebf2ff" fontname="Malgun Gothic" shape=box style="rounded,filled"]
+		C [label="2. HJB 방정식 1회 반복 수행
+[HJBUpdate.f90]"]
+		D [label="가치함수 V 수렴?" shape=diamond]
+		C -> D
+		D -> C [label=" No" fontname="Malgun Gothic"]
+	}
+	A -> B
+	B -> C [lhead=cluster_hjb]
+	D -> E [label=" Yes" fontname="Malgun Gothic" ltail=cluster_hjb]
+	E -> F
+	F -> G
+	G -> H [label=" No (불균형)" fontname="Malgun Gothic"]
+	H -> C [lhead=cluster_hjb]
+	G -> I [label=" Yes (균형)" fontname="Malgun Gothic"]
+}

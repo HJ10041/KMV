@@ -22,8 +22,8 @@ Display              		= 1
 ReportNonMonotonicity   	= 0
 
 !run options
-CalibrateDiscountRate	= 0 
-EquilibriumR		 	= 1
+CalibrateDiscountRate	= 0 !CDR
+EquilibriumR		 	= 1 !EQR
 ComputeCumulativeMPC 	= 1
 DoImpulseResponses 		= 1
 DoPriceExperiments		= 1
