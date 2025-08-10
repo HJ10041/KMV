@@ -173,8 +173,8 @@ DO iy = 1,ngpy
 		ladriftF = max(d(ia,ib,iy),0.0_8) + max(adrift(ia),0.0_8)
 	
 		!b drift
-		lbdriftB = min(-d(ia,ib,iy) - adjcostfn(d(ia,ib,iy),agrid(ia)),0.0) + min(s(ia,ib,iy),0.0_8)
-		lbdriftF = max(-d(ia,ib,iy) - adjcostfn(d(ia,ib,iy),agrid(ia)),0.0) + max(s(ia,ib,iy),0.0_8)
+		lbdriftB = min(-d(ia,ib,iy) - adjcostfn(d(ia,ib,iy),agrid(ia)),0.0_8) + min(s(ia,ib,iy),0.0_8)
+		lbdriftF = max(-d(ia,ib,iy) - adjcostfn(d(ia,ib,iy),agrid(ia)),0.0_8) + max(s(ia,ib,iy),0.0_8)
 
 		!a drift, upwind
 		IF(ib<ngpb) laudriftB = min(d(ia,ib,iy) + adrift(ia),0.0_8)

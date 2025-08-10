@@ -104,7 +104,7 @@ adjcostfn1inv = adjcostfn1inv*max(kappa3,la)
 
 
 IF(adjcostfn1inv>dmax)THEN
-	IF(Display>=2)write(*,*),'high optimal d: ',adjcostfn1inv
+	IF(Display>=2)write(*,*) 'high optimal d: ',adjcostfn1inv
 	adjcostfn1inv = dmax
 END IF	
 END FUNCTION adjcostfn1inv

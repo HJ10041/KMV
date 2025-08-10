@@ -7,6 +7,8 @@ USE Procedures
 IMPLICIT NONE
 INTEGER		:: it,it1
 CHARACTER	:: IRFDir*20
+integer :: nend      ! ← 새로 추가
+nend = int(nendtrans)   ! 또는 nend = nint(nendtrans)
 
 !allocate arrays
 CALL AllocateArrays
@@ -21,9 +23,7 @@ cumdeltatrans(1) = deltatransvec(1)
 DO it = 2,Ttransition
 	cumdeltatrans(it) = cumdeltatrans(it-1) + deltatransvec(it)
 END DO
-OPEN(3, FILE = trim(OutputDir) // 'deltatransvec.txt', STATUS = 'replace'); CALL WriteMatrix(3,Ttransition,1,deltatransvec)
-
-
+OPEN(3, FILE = trim(OutputDir) // '/deltatransvec.txt', STATUS = 'replace'); CALL WriteMatrix(3,Ttransition,1,deltatransvec)
 
 !Monetary policy shock
 IF(IncludeMonetaryShock==1) THEN
@@ -32,11 +32,11 @@ IF(IncludeMonetaryShock==1) THEN
 
 	equmTRANS(:) = equmINITSS		
 	equmTRANS(1)%mpshock = equmINITSS%mpshock + MonetaryShockSize
-	DO it = 2,Ttransition-nendtrans
+	DO it = 2,Ttransition - nend
 		equmTRANS(it)%mpshock =equmINITSS%mpshock *(1.0-MonetaryShockPers**deltatransvec(it-1)) + equmTRANS(it-1)%mpshock * (MonetaryShockPers**deltatransvec(it-1))
 
 	END DO	
-	equmTRANS(Ttransition-nendtrans+1:Ttransition)%mpshock = equmINITSS%mpshock
+	equmTRANS(Ttransition - nend+1:Ttransition)%mpshock = equmINITSS%mpshock
 
 	IRFDir = "Monetary"
 	CALL IRFSequence(IRFDir)
@@ -53,11 +53,11 @@ IF(IncludeForwardGuideShock==1) THEN
 	it1 = MINLOC(cumdeltatrans, 1, MASK = cumdeltatrans>=ForwardGuideShockQtrs)
 	equmTRANS(1:it1-1)%mpshock = equmINITSS%mpshock
 	equmTRANS(it1)%mpshock = equmINITSS%mpshock + ForwardGuideShockSize
-	DO it = it1+1,Ttransition-nendtrans
+	DO it = it1+1,Ttransition-nend
 		equmTRANS(it)%mpshock =equmINITSS%mpshock *(1.0-MonetaryShockPers**deltatransvec(it-1)) + equmTRANS(it-1)%mpshock * (MonetaryShockPers**deltatransvec(it-1))
 
 	END DO	
-	equmTRANS(Ttransition-nendtrans+1:Ttransition)%mpshock = equmINITSS%mpshock
+	equmTRANS(Ttransition-nend+1:Ttransition)%mpshock = equmINITSS%mpshock
 
 	IRFDir = "ForwardGuide"
 	CALL IRFSequence(IRFDir)

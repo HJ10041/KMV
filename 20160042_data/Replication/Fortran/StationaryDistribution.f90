@@ -30,12 +30,12 @@ END DO
 !$OMP END PARALLEL DO
 
 
-IF	((EquilibriumR==0 .and. calibrating==.false.) &
-  	.or. (EquilibriumR==1 .and. neqmiter<=100 .and. calibrating==.false.) &
-	.or. (CalibrateDiscountRate==1 .and. neqmiter<=100 .and. calibrating==.false.) &
- 	.or. (CalibrateRhoAtInitialGuess==1 .and. neqmiter<=100 .and. calibrating==.false.) &
-	.or. (calibrating==.true. .and. ImposeEqumInCalibration==1  .and. neqmiter==1 ) &
-	.or. (calibrating==.true. .and. ImposeEqumInCalibration==0 ) ) THEN
+IF	((EquilibriumR==0 .and. .not. calibrating) &
+  	.or. (EquilibriumR==1 .and. neqmiter<=100 .and. .not. calibrating) &
+	.or. (CalibrateDiscountRate==1 .and. neqmiter<=100 .and. .not. calibrating) &
+ 	.or. (CalibrateRhoAtInitialGuess==1 .and. neqmiter<=100 .and. .not. calibrating) &
+	.or. (calibrating.and. ImposeEqumInCalibration==1  .and. neqmiter==1 ) &
+	.or. (calibrating.and. ImposeEqumInCalibration==0 ) ) THEN
 
 	gmat = 0.0
 

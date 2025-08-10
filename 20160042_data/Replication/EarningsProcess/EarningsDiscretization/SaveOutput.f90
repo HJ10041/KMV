@@ -7,30 +7,30 @@ USE Procedures
 IMPLICIT NONE
 
 
-OPEN(3, FILE = trim(OutputDir) // 'y1grid.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,1,y1grid)
-OPEN(3, FILE = trim(OutputDir) // 'y1dist.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,1,y1dist)
-OPEN(3, FILE = trim(OutputDir) // 'y1markov.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,ngpy1,y1markov)
-OPEN(3, FILE = trim(OutputDir) // 'y1trans.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,ngpy1,y1trans)
-OPEN(3, FILE = trim(OutputDir) // 'y1trans_qu.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,ngpy1,y1trans_qu)
+OPEN(3, FILE = trim(OutputDir) // '/y1grid.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,1,y1grid)
+OPEN(3, FILE = trim(OutputDir) // '/y1dist.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,1,y1dist)
+OPEN(3, FILE = trim(OutputDir) // '/y1markov.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,ngpy1,y1markov)
+OPEN(3, FILE = trim(OutputDir) // '/y1trans.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,ngpy1,y1trans)
+OPEN(3, FILE = trim(OutputDir) // '/y1trans_qu.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1,ngpy1,y1trans_qu)
 
-OPEN(3, FILE = trim(OutputDir) // 'y2grid.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,1,y2grid)
-OPEN(3, FILE = trim(OutputDir) // 'y2dist.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,1,y2dist)
-OPEN(3, FILE = trim(OutputDir) // 'y2markov.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,ngpy2,y2markov)
-OPEN(3, FILE = trim(OutputDir) // 'y2trans.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,ngpy2,y2trans)
-OPEN(3, FILE = trim(OutputDir) // 'y2trans_qu.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,ngpy2,y2trans_qu)
+OPEN(3, FILE = trim(OutputDir) // '/y2grid.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,1,y2grid)
+OPEN(3, FILE = trim(OutputDir) // '/y2dist.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,1,y2dist)
+OPEN(3, FILE = trim(OutputDir) // '/y2markov.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,ngpy2,y2markov)
+OPEN(3, FILE = trim(OutputDir) // '/y2trans.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,ngpy2,y2trans)
+OPEN(3, FILE = trim(OutputDir) // '/y2trans_qu.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy2,ngpy2,y2trans_qu)
 
 
-OPEN(3, FILE = trim(OutputDir) // 'ygrid_combined.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1*ngpy2,1,ygrid_combined)
-OPEN(3, FILE = trim(OutputDir) // 'ydist_combined.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1*ngpy2,1,ydist_combined)
-OPEN(3, FILE = trim(OutputDir) // 'ymarkov_combined.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1*ngpy2,ngpy1*ngpy2,ymarkov_combined)
-OPEN(3, FILE = trim(OutputDir) // 'ytrans_qu_combined.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1*ngpy2,ngpy1*ngpy2,ytrans_qu_combined)
+OPEN(3, FILE = trim(OutputDir) // '/ygrid_combined.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1*ngpy2,1,ygrid_combined)
+OPEN(3, FILE = trim(OutputDir) // '/ydist_combined.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1*ngpy2,1,ydist_combined)
+OPEN(3, FILE = trim(OutputDir) // '/ymarkov_combined.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1*ngpy2,ngpy1*ngpy2,ymarkov_combined)
+OPEN(3, FILE = trim(OutputDir) // '/ytrans_qu_combined.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpy1*ngpy2,ngpy1*ngpy2,ytrans_qu_combined)
 
 
 IF (SaveSimulations==1) THEN
-	OPEN(3, FILE = trim(OutputDir) // 'yannsim.txt', STATUS = 'replace'); CALL WriteMatrixCSV(3,nsim,5,yannsim)	
+	OPEN(3, FILE = trim(OutputDir) // '/yannsim.txt', STATUS = 'replace'); CALL WriteMatrixCSV(3,nsim,5,yannsim)	
 END IF
 
-OPEN(3, FILE = trim(OutputDir) // 'parameters.txt', STATUS = 'replace')
+OPEN(3, FILE = trim(OutputDir) // '/parameters.txt', STATUS = 'replace')
 	write(3,*) 'ngpy1 ',ngpy1
 	write(3,*) 'ngpy2 ',ngpy2
 	write(3,*) 'y1width ',y1width
@@ -49,7 +49,7 @@ OPEN(3, FILE = trim(OutputDir) // 'parameters.txt', STATUS = 'replace')
 	write(3,*) 'sigma2 ',sigma2	
 CLOSE(3)	
 
-OPEN(3, FILE = trim(OutputDir) // 'moments.txt', STATUS = 'replace')
+OPEN(3, FILE = trim(OutputDir) // '/moments.txt', STATUS = 'replace')
 	write(3,*) 'muy ',muy
 	write(3,*) 'mu2y ',mu2y
 	write(3,*) 'mu3y ',mu3y

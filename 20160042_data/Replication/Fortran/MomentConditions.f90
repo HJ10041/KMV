@@ -134,7 +134,7 @@ IF(capital < 1.0e-8) modelKYratio = 0.0
 !model implied moments
 IF(MatchRelativeToTargetOutput==0) THEN
 	loutput = tfp*(capital**alpha)*(labor**(1.0-alpha)) 
-	loutput = max(loutput, 0.01)
+	loutput = max(loutput, 0.01_8) ! kind 표기
 	modelMeanIll = Ea/loutput
 	modelMeanLiq = Eb/loutput
 	modelMedianIll = PERCa(6)/loutput

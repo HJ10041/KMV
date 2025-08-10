@@ -41,8 +41,8 @@ IF(Display>=1) write(*,"(A,I2,A,E11.4,A,E11.4)") '  Rho iter ',neqmiter, ', rho 
 FnDiscountRate = lKNratio/KNratio - 1.0
 
 
-IF(CalibrateDiscountRate==1) OPEN(3, FILE = trim(OutputDir) // 'DiscountRateCalibration.txt', ACCESS = 'append')
-IF(CalibrateRhoAtInitialGuess==1) OPEN(3, FILE = trim(OutputDir) // 'DiscountRateAtInitialGuess.txt', ACCESS = 'append')
+IF(CalibrateDiscountRate==1) OPEN(3, FILE = trim(OutputDir) // '/DiscountRateCalibration.txt', STATUS='unknown', POSITION='append')
+IF(CalibrateRhoAtInitialGuess==1) OPEN(3, FILE = trim(OutputDir) // '/DiscountRateAtInitialGuess.txt', STATUS='unknown', POSITION='append')
 WRITE(3,*) '*******************************************'
 WRITE(3,*) ' ITERATION : 			',neqmiter
 WRITE(3,*) ' rho guess: 			',rho

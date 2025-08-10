@@ -12,14 +12,14 @@ CHARACTER	:: lstring*80
 IF (Display>=1) write(*,*) 'Saving output to disk'
 
 !grids
-OPEN(3, FILE = trim(OutputDir) // 'agrid.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpa,1,agrid)
-OPEN(3, FILE = trim(OutputDir) // 'bgrid.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpb,1,bgrid)
-OPEN(3, FILE = trim(OutputDir) // 'ygrid.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpy,1,ygrid)
-OPEN(3, FILE = trim(OutputDir) // 'adelta.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpa,1,adelta)
-OPEN(3, FILE = trim(OutputDir) // 'bdelta.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpb,1,bdelta)
+OPEN(3, FILE = trim(OutputDir) // '/agrid.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpa,1,agrid)
+OPEN(3, FILE = trim(OutputDir) // '/bgrid.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpb,1,bgrid)
+OPEN(3, FILE = trim(OutputDir) // '/ygrid.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpy,1,ygrid)
+OPEN(3, FILE = trim(OutputDir) // '/adelta.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpa,1,adelta)
+OPEN(3, FILE = trim(OutputDir) // '/bdelta.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,ngpb,1,bdelta)
 
 !initial steady state summary stats
-OPEN(3, FILE = trim(OutputDir) // 'InitialSteadyStateParameters.txt', STATUS = 'replace')
+OPEN(3, FILE = trim(OutputDir) // '/InitialSteadyStateParameters.txt', STATUS = 'replace')
 	write(3,*) 'gam ',gam
 	write(3,*) 'rho ',rho
 	write(3,*) 'deathrate ',deathrate
@@ -110,58 +110,58 @@ OPEN(3, FILE = trim(OutputDir) // 'InitialSteadyStateParameters.txt', STATUS = '
 CLOSE(3)
 
 !initial steady state distributions and policy functions
-CALL system ("mkdir -p " // trim(OutputDir) // "INITSS")
+CALL execute_command_line ('cmd /c mkdir "' // trim(OutputDir) // "INITSS")
 
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'PERCa.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCa)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'PERCb.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCb)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'PERCnw.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCnw)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'PERCc.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCc)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'PERCinc.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCinc)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/PERCa.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCa)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/PERCb.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCb)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/PERCnw.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCnw)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/PERCc.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCc)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/PERCinc.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,11,statsINITSS%PERCinc)
 
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'Ea_nwQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Ea_nwQ)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'Eb_nwQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Eb_nwQ)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'Ec_nwQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Ec_nwQ)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'Einc_nwQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Einc_nwQ)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/Ea_nwQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Ea_nwQ)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/Eb_nwQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Eb_nwQ)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/Ec_nwQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Ec_nwQ)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/Einc_nwQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Einc_nwQ)
 
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'Ea_incQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Ea_incQ)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'Eb_incQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Eb_incQ)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'Ec_incQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Ec_incQ)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'Einc_incQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Einc_incQ)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/Ea_incQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Ea_incQ)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/Eb_incQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Eb_incQ)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/Ec_incQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Ec_incQ)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/Einc_incQ.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,1,4,statsINITSS%Einc_incQ)
 
 DO iy = 1,ngpy
 	IF (iy<10) WRITE(UNIT=lstring, FMT='(I1)') iy
 	IF (iy >= 10) WRITE(UNIT=lstring, FMT='(I2)') iy
 
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/" // 'V_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%V(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'dep_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%d(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'con_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%c(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'sav_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%s(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'hour_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%h(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'bdot_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%bdot(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'gjoint_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%gjoint(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/" // 'B_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%B(iy)%val)
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/" // '/V_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%V(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/dep_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%d(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/con_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%c(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/sav_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%s(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/hour_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%h(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/bdot_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%bdot(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/gjoint_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%gjoint(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/" // '/B_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%B(iy)%val)
 
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'ccum1_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%ccum1(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'ccum2_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%ccum2(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'ccum4_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%ccum4(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'dcum1_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%dcum1(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'dcum2_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%dcum2(:,:,iy))
-	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'dcum4_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%dcum4(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/ccum1_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%ccum1(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/ccum2_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%ccum2(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/ccum4_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%ccum4(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/dcum1_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%dcum1(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/dcum2_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%dcum2(:,:,iy))
+	OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/dcum4_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,cumINITSS%dcum4(:,:,iy))
 
 	IF(ComputeDiscountedMPC==1) THEN
-		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'mpc_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%mpc(:,:,iy))
-		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'subeff1ass_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%subeff1ass(:,:,iy))
-		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'subeff2ass_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%subeff2ass(:,:,iy))
-		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'wealtheff1ass_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%wealtheff1ass(:,:,iy))
-		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'wealtheff2ass_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%wealtheff2ass(:,:,iy))
+		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/mpc_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%mpc(:,:,iy))
+		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/subeff1ass_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%subeff1ass(:,:,iy))
+		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/subeff2ass_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%subeff2ass(:,:,iy))
+		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/wealtheff1ass_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%wealtheff1ass(:,:,iy))
+		OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/wealtheff2ass_INITSS_y' // trim(lstring) //'.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,solnINITSS%wealtheff2ass(:,:,iy))
 	END IF	
 
 END DO
 
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'gamarg_INITSS.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpy,solnINITSS%gamarg)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'gbmarg_INITSS.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpb,ngpy,solnINITSS%gbmarg)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'gabmarg_INITSS.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,gabmarg)
-OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // 'gabcum_INITSS.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,gabcum)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/gamarg_INITSS.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpy,solnINITSS%gamarg)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/gbmarg_INITSS.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpb,ngpy,solnINITSS%gbmarg)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/gabmarg_INITSS.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,gabmarg)
+OPEN(3, FILE = trim(OutputDir) // "INITSS/"  // '/gabcum_INITSS.txt', STATUS = 'replace'); CALL WriteMatrixExpon(3,ngpa,ngpb,gabcum)
 
 
 END SUBROUTINE SaveSteadyStateOutput

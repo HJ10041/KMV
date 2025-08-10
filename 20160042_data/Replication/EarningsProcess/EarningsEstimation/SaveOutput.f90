@@ -8,10 +8,10 @@ IMPLICIT NONE
 
 
 IF (SaveSimulations==1) THEN
-	OPEN(3, FILE = trim(OutputDir) // 'yannsim.txt', STATUS = 'replace'); CALL WriteMatrixCSV(3,nsim,5,yannsim)	
+	OPEN(3, FILE = trim(OutputDir) // '/yannsim.txt', STATUS = 'replace'); CALL WriteMatrixCSV(3,nsim,5,yannsim)	
 END IF
 
-OPEN(3, FILE = trim(OutputDir) // 'parameters.txt', STATUS = 'replace')
+OPEN(3, FILE = trim(OutputDir) // '/parameters.txt', STATUS = 'replace')
 	write(3,*) 'lambda1 ',lambda1
 	write(3,*) 'zeta1P ',zeta1P
 	write(3,*) 'zeta1N ',zeta1N
@@ -26,7 +26,7 @@ OPEN(3, FILE = trim(OutputDir) // 'parameters.txt', STATUS = 'replace')
 	write(3,*) 'delta2 ',delta2	
 CLOSE(3)	
 
-OPEN(3, FILE = trim(OutputDir) // 'moments.txt', STATUS = 'replace')
+OPEN(3, FILE = trim(OutputDir) // '/moments.txt', STATUS = 'replace')
 	write(3,*) 'muy ',muy
 	write(3,*) 'mu2y ',mu2y
 	write(3,*) 'mu3y ',mu3y

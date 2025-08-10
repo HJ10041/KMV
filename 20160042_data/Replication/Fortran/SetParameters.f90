@@ -10,10 +10,10 @@ INTEGER 	:: iy
 REAL 		:: la,lb,lc
 
 !OUTPUT DIR
-OutputDir =	"~/FortranOutputDir/BaselineOutputSubdir/"
+OutputDir = 'C:/Users/madel/FortranOutputDir/BaselineOutputSubdir'
 EarningsProcessDir	= "earnings_input"
 
-CALL system ("mkdir -p " // trim(OutputDir))
+call execute_command_line('cmd /c mkdir "' // trim(OutputDir) // '"')
 
 !OPTIONS
 

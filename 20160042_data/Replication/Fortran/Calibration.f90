@@ -17,7 +17,7 @@ IF(CalibrateRhoAtInitialGuess==1) THEN
 	IF (Display>=1) write(*,*) "Calibrating rho at initial steady state"
 	converged = .false.
 	neqmiter = 1
-	OPEN(3, FILE = trim(OutputDir) // 'DiscountRateAtInitialGuess.txt', STATUS = 'replace'); CLOSE(3)
+	OPEN(3, FILE = trim(OutputDir) // '/DiscountRateAtInitialGuess.txt', STATUS = 'replace'); CLOSE(3)
 	lrhoL = invlogistic(exp(-0.02_8))
 	lrhoU = invlogistic(exp(-0.01_8))
 	CALL rtflsp(FnDiscountRate,lrhoL,lrhoU,1.0e-8_8,tolrho,iflag,maxiterrho)
@@ -118,9 +118,9 @@ END IF
 
 
 !write paramguess to file
-OPEN(3, FILE = trim(OutputDir) // 'paramguess' //   '.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,Nparam,1,paramguess)
-OPEN(3, FILE = trim(OutputDir) // 'paramlb' //   '.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,Nparam,1,paramlb)
-OPEN(3, FILE = trim(OutputDir) // 'paramub' //   '.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,Nparam,1,paramub)
+OPEN(3, FILE = trim(OutputDir) // '/paramguess' //   '.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,Nparam,1,paramguess)
+OPEN(3, FILE = trim(OutputDir) // '/paramlb' //   '.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,Nparam,1,paramlb)
+OPEN(3, FILE = trim(OutputDir) // '/paramub' //   '.txt', STATUS = 'replace'); CALL WriteMatrixLong(3,Nparam,1,paramub)
 
 
 
@@ -143,7 +143,7 @@ DO j = 1,ndfls
 		IF (Display>=1) write(*,*) "Calibrating rho at initial steady state"
 		converged = .false.
 		neqmiter = 1
-		OPEN(3, FILE = trim(OutputDir) // 'DiscountRateAtInitialGuess.txt', STATUS = 'replace'); CLOSE(3)
+		OPEN(3, FILE = trim(OutputDir) // '/DiscountRateAtInitialGuess.txt', STATUS = 'replace'); CLOSE(3)
 		lrhoL = invlogistic(exp(-0.02_8))
 		lrhoU = invlogistic(exp(-0.01_8))
 		CALL rtflsp(FnDiscountRate,lrhoL,lrhoU,1.0e-8_8,tolrho,iflag,maxiterrho)

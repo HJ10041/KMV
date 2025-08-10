@@ -24,13 +24,13 @@ END IF
 
 
 !Initial Guess
-IF	(	(EquilibriumR==0 .and. calibrating==.false.) &
- 	.or. (EquilibriumR==1 .and. neqmiter<=3 .and. calibrating==.false.) &
- 	.or. (CalibrateDiscountRate==1 .and. neqmiter<=3 .and. calibrating==.false.) &
- 	.or. (CalibrateRhoAtInitialGuess==1 .and. neqmiter<=3 .and. calibrating==.false.) &
-	.or. (calibrating==.true. .and. ImposeEqumInCalibration==1  .and. neqmiter==1 ) &
-	.or. (calibrating==.true. .and. ImposeEqumInCalibration==0 ))  THEN
-	
+IF ( (EquilibriumR==0 .and. .not. calibrating)                           &
+     .or. (EquilibriumR==1 .and. neqmiter<=3 .and. .not. calibrating)     &
+     .or. (CalibrateDiscountRate==1 .and. neqmiter<=3 .and. .not. calibrating) &
+     .or. (CalibrateRhoAtInitialGuess==1 .and. neqmiter<=3 .and. .not. calibrating) &
+     .or. (calibrating .and. ImposeEqumInCalibration==1  .and. neqmiter==1 ) &
+     .or. (calibrating .and. ImposeEqumInCalibration==0 ) ) THEN
+	 
 	!$OMP PARALLEL DO PRIVATE (ladrift,lh,lc,llabdisutil)
 	DO iaby = 1,naby
 		IF(LaborSupplyGHH==1) 	lh = (netwage*ygrid(yfromaby(iaby)))**frisch
